@@ -9,7 +9,7 @@ function [xk, res, it] = iteracio_simple(x0, tol, itmax, f)
     error = f(x0);
     
     % Loop for computing consecutive iterates
-    while ( abs(current - error) > tol) 
+    while ( abs(current - error) > tol ) 
         
         % Checking the number of iterations
         if (it > itmax)
