@@ -20,3 +20,4 @@ function [xk,res,it] = fixed_point_iter(x0,tol,itmax,fun)
       it = it + 1 ;
   end
 
+end
