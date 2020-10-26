@@ -70,20 +70,58 @@ hold on
 plot(mu, L1(1,:));
 plot(mu, L1(2,:));
 plot(mu, L1(3,:));
+xlabel('\mu');
+ylabel('x_{L1}');
+legend({'Simple', 'Newton', 'Tangent'}, 'Location', 'Northeast')
+title('Plot of the L1 point as a function of \mu for different methods');
+figure;
 hold off
 
-% Plots for the L1 point with each method
+% Plots for the L2 point with each method
 hold on
 plot(mu, L2(1,:));
 plot(mu, L2(2,:));
 plot(mu, L2(3,:));
+xlabel('\mu');
+ylabel('x_{L2}');
+legend({'Simple', 'Newton', 'Tangent'}, 'Location', 'Northwest')
+title('Plot of the L2 point as a function of \mu for different methods');
+figure;
 hold off
 
-% Plots for the L1 point with each method
+% Plots for the L3 point with each method
 hold on
 plot(mu, L3(1,:));
 plot(mu, L3(2,:));
 plot(mu, L3(3,:));
+xlabel('\mu');
+ylabel('x_{L3}');
+legend({'Simple', 'Newton', 'Tangent'}, 'Location', 'Northwest')
+title('Plot of the L3 point as a function of \mu for different methods');
+figure;
+hold off
+
+% Plots for all points with a simple iteration procedure
+hold on
+plot(mu, L1(1,:));
+plot(mu, L2(1,:));
+plot(mu, L3(1,:));
+xlabel('\mu');
+ylabel('x');
+legend({'Lagrange 1', 'Lagrange 2', 'Lagrange3'}, 'Location', 'Northeast')
+title('Plot of the Lagrange points as a function of \mu by simple iteration');
+figure;
+hold off
+
+% Plots for the Jacobi constant of equilibrium points for each mu
+hold on
+plot(mu, omega(L1(1,:), mu));
+plot(mu, omega(L2(1,:), mu));
+plot(mu, omega(L3(1,:), mu));
+xlabel('\mu');
+ylabel('C');
+legend({'Lagrange 1', 'Lagrange 2', 'Lagrange 3'}, 'Location', 'Northwest')
+title('Plot of the Jacobi constant as a function of \mu by simple iteration');
 hold off
 
 %% Auxiliary functions for the PCRTBP
@@ -125,4 +163,9 @@ end
 
 function dpol3 = dP3(s, mu)
     dpol3 = 5*s^4 + 4*(2 + mu)*s^3 + 3*(1 + 2*mu)*s^2 - 2*(1 - mu)*s - 2*(1 - mu);
+end
+
+% Function for the omega plot
+function res = omega(x, mu)
+    res = x.*x/2 + (1 - mu)./abs(x - mu) + mu./abs(x - mu + 1) + mu.*(1 - mu)/2;
 end
