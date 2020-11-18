@@ -6,11 +6,11 @@ function [xk, res, it] = secant(a, b, tol, itmax, fun)
     res = [fun(a), fun(b)];
 
     % Tolerance to iterate over different successions
-    tolk = tol + 1;
+    tolk = abs( res(2)*(b - a)/(res(2) - res(1)) );
 
     while tolk > tol
         if it == itmax
-            printf("Warning: Reached maximum number of iterations, itmax = \n. Stopping iterative method", itmax);
+            printf("Warning: Reached maximum number of iterations, itmax = %d. Stopping iterative method", itmax);
             break;
         end
         fk = xk(end) - fun(xk(end))*(xk(end) - xk(end - 1))/(fun(xk(end)) - fun(xk(end - 1)));

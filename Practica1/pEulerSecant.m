@@ -1,4 +1,6 @@
 %% Parameters and preliminary declarations
+clear all
+close all
 
 % General parameters of the problem
 tol = 1e-10;
@@ -9,7 +11,7 @@ itmax = 100;
 mu = 0:0.0001:0.5;
 n = length(mu);
 
-L1 = zeros(1, n); % L1 point for all mus and different methods
+L1 = zeros(1, n);
 L2 = zeros(1, n);
 L3 = zeros(1, n);
 

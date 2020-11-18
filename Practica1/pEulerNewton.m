@@ -1,4 +1,6 @@
 %% Parameters and preliminary declarations
+clear all
+close all
 
 % General parameters of the problem
 tol = 1e-10;
@@ -9,13 +11,13 @@ itmax = 100;
 mu = 0:0.0001:0.5;
 n = length(mu);
 
-L1 = zeros(1, n); % L1 point for all mus and different methods
+L1 = zeros(1, n);
 L2 = zeros(1, n);
 L3 = zeros(1, n);
 
 %% Loop for the fixed point iterations
 for i = 1:n
-    % Fixed point iteration
+    % L1 point
     s0 = ( mu(i)/(3*(1 - mu(i))) )^(1/3);
     [xk1, res1, it1] = newton(s0, tol, itmax, @(x) P1(x, mu(i)), @(x) dP1(x, mu(i)));
     L1(i) = -(1 - mu(i)) - xk1(end);
