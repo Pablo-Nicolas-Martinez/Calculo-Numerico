@@ -1,13 +1,24 @@
 function X = contzvc(x0, ds, smax, sgn, f, Df)
+
+    n = length(x0); % Not consistent with the problem definition
     
     % Preliminary declarations: finding a point in the curve
+    for i = 1:n
+        a = zeros(1, n);
+        a(i) = 1;
+        fun1 = @(x) [f(x); x(i) - x0(i)]; % Newton fixing one coordinate
+        dfun1 = @(x) [Df(x); a];
+        [XK, ~, ~, ittot] = nnewton(x0, 1e-12, 100, fun1, dfun1);
+        if ittot < 100
+            X = XK(:, end);
+            break;
+        end
+    end
+    
     %[XK, ~, ~, ~] = nnewton(x0, 1e-12, 100, f, Df);
     %X = XK(:, end);
     
-    X = x0;
-    
     % Choosing an appropriate initial submatrix and vector
-    n = length(x0); % Not consistent with the problem definition
     Df0 = Df(x0);
     Dtmp = Df0(:, 2:end);
     for i = 1:n

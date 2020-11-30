@@ -4,7 +4,7 @@ function [XK, DFk, res, it] = nnewton(x0, tol, itmax, fun, dfun)
     XK = x0;
     res = norm(fun(x0));
     it = 0;
-    tolk = norm(dfun(x0)\x0);
+    tolk = norm(dfun(x0)\fun(x0));
     
     % Loop for iterative search of solutions
     while tolk > tol
