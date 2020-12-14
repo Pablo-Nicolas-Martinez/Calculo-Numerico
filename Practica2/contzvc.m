@@ -15,9 +15,6 @@ function X = contzvc(x0, ds, smax, sgn, f, Df)
         end
     end
     
-    %[XK, ~, ~, ~] = nnewton(x0, 1e-12, 100, f, Df);
-    %X = XK(:, end);
-    
     % Choosing an appropriate initial submatrix and vector
     Df0 = Df(x0);
     Dtmp = Df0(:, 2:end);

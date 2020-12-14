@@ -1,4 +1,6 @@
 %% Function to compute the accessible areas
+clear all
+close all
 
 %% Parameters for the problem
 m = 0.0121529; % Reduced mass
@@ -9,6 +11,10 @@ X = contzvc([0.75; 0.75], 0.001, 12, 1, @(x) JacobDiff(x, m, C), @(x) DJacobDiff
 
 %% Plot and visualization
 fill(X(1,:), X(2,:), 'r');
+grid on;
+xlabel('x');
+ylabel('y');
+title('Hill´s region´s complement for C = 3.08');
 
 %% Functions for the problem
 function res = JacobDiff(x, mu, Cj)
